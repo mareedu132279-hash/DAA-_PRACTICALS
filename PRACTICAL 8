@@ -1,0 +1,109 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+// Graph class
+class Graph {
+    int V;
+    vector<vector<int>> adj;
+
+public:
+    Graph(int vertices) {
+        V = vertices;
+        adj.resize(V);
+    }
+
+    // Add edge
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);   // Undirected graph
+    }
+
+    // DFS utility function
+    void DFSUtil(int vertex, vector<bool>& visited) {
+        visited[vertex] = true;
+        cout << vertex << " ";
+
+        for (int neighbour : adj[vertex]) {
+            if (!visited[neighbour]) {
+                DFSUtil(neighbour, visited);
+            }
+        }
+    }
+
+    // DFS
+    void DFS(int start) {
+        vector<bool> visited(V, false);
+
+        cout << "DFS Traversal: ";
+        DFSUtil(start, visited);
+        cout << endl;
+
+        cout << "Time Complexity of DFS: O(V + E)" << endl;
+        cout << "Space Complexity of DFS: O(V)" << endl;
+    }
+
+    // BFS
+    void BFS(int start) {
+        vector<bool> visited(V, false);
+        queue<int> q;
+
+        visited[start] = true;
+        q.push(start);
+
+        cout << "BFS Traversal: ";
+
+        while (!q.empty()) {
+            int vertex = q.front();
+            q.pop();
+
+            cout << vertex << " ";
+
+            for (int neighbour : adj[vertex]) {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    q.push(neighbour);
+                }
+            }
+        }
+
+        cout << endl;
+
+        cout << "Time Complexity of BFS: O(V + E)" << endl;
+        cout << "Space Complexity of BFS: O(V)" << endl;
+    }
+};
+
+int main() {
+    int V, E;
+
+    cout << "Enter number of vertices: ";
+    cin >> V;
+
+    Graph g(V);
+
+    cout << "Enter number of edges: ";
+    cin >> E;
+
+    cout << "Enter edges (u v):" << endl;
+
+    for (int i = 0; i < E; i++) {
+        int u, v;
+        cin >> u >> v;
+        g.addEdge(u, v);
+    }
+
+    int start;
+
+    cout << "Enter starting vertex: ";
+    cin >> start;
+
+    cout << "\n--- DFS ---" << endl;
+    g.DFS(start);
+
+    cout << "\n--- BFS ---" << endl;
+    g.BFS(start);
+
+    return 0;
+}
