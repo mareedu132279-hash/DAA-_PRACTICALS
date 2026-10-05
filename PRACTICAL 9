@@ -1,0 +1,83 @@
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Enter number of vertices: ";
+    cin >> n;
+
+    int graph[50][50];
+
+    cout << "Enter the adjacency matrix:\n";
+    cout << "(Enter 0 if there is no edge)\n";
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> graph[i][j];
+        }
+    }
+
+    int parent[50];
+    int key[50];
+    bool visited[50];
+
+    // Initialize
+    for (int i = 0; i < n; i++) {
+        key[i] = INT_MAX;
+        visited[i] = false;
+        parent[i] = -1;
+    }
+
+    // Start from vertex 0
+    key[0] = 0;
+
+    int totalCost = 0;
+
+    cout << "\nEdges in Minimum Spanning Tree:\n";
+
+    for (int count = 0; count < n - 1; count++) {
+
+        // Find the minimum key vertex
+        int minKey = INT_MAX;
+        int u = -1;
+
+        for (int v = 0; v < n; v++) {
+            if (!visited[v] && key[v] < minKey) {
+                minKey = key[v];
+                u = v;
+            }
+        }
+
+        // Mark vertex as visited
+        visited[u] = true;
+
+        // Update adjacent vertices
+        for (int v = 0; v < n; v++) {
+            if (graph[u][v] != 0 &&
+                !visited[v] &&
+                graph[u][v] < key[v]) {
+
+                parent[v] = u;
+                key[v] = graph[u][v];
+            }
+        }
+    }
+
+    // Print MST
+    for (int i = 1; i < n; i++) {
+        cout << parent[i] << " - " << i
+             << "  Weight: " << graph[i][parent[i]] << endl;
+
+        totalCost += graph[i][parent[i]];
+    }
+
+    cout << "\nTotal cost of MST = " << totalCost << endl;
+
+    // Print Time Complexity
+    cout << "\nTime Complexity: O(V^2)" << endl;
+    cout << "Space Complexity: O(V^2)" << endl;
+
+    return 0;
+}
