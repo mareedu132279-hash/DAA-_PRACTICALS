@@ -96,4 +96,13 @@ The Floyd–Warshall algorithm is used to find the shortest paths between all pa
 
 Conclusion
 
-Thus, the Floyd–Warshall algorithm was implemented successfully in C++. The time complexity is **O(V³)**, and the space complexity is **O(V²)**.
+Thus, the Floyd–Warshall algorithm was implemented successfully in C++. The time complexity is O(V³), and the space complexity is O(V²).
+
+practical - 12
+Summary
+
+The Travelling Salesman Problem finds the minimum-cost tour that visits every city exactly once and returns to the starting city. Dynamic Programming stores previously calculated results to avoid repeated computations.
+
+Conclusion
+
+Thus, the Travelling Salesman Problem was implemented successfully in C++ using Dynamic Programming. The minimum travelling cost is 80.
