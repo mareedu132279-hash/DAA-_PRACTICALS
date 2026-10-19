@@ -78,7 +78,7 @@ Prim’s Algorithm is a greedy algorithm used to find the Minimum Spanning Tree 
 Conclusion :
 Prim’s Algorithm efficiently constructs a Minimum Spanning Tree with minimum total edge weight. It is useful for network design and optimization problems where all vertices need to be connected with minimum cost.
 
-practcal - 10
+practical - 10
 
 Summary
 
@@ -87,3 +87,13 @@ This program uses Kruskal's Algorithm to find the Minimum Spanning Tree (MST). T
 Conclusion
 
 Kruskal's Algorithm helps connect all vertices with the minimum total cost. It is easy to implement and is commonly used in network design, road construction, and communication systems.
+
+
+practical - 11
+Summary
+
+The Floyd–Warshall algorithm is used to find the shortest paths between all pairs of vertices in a graph. It uses Dynamic Programming to update distances through intermediate vertices.
+
+Conclusion
+
+Thus, the Floyd–Warshall algorithm was implemented successfully in C++. The time complexity is **O(V³)**, and the space complexity is **O(V²)**.
